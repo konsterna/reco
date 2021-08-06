@@ -4,6 +4,7 @@ import dev.konsterna.reco.controller.AnswerController
 import dev.konsterna.reco.controller.EventController
 import dev.konsterna.reco.service.AnswerService
 import dev.konsterna.reco.service.EventService
+import dev.konsterna.reco.service.MessagingService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -27,6 +28,10 @@ class RecoApplicationTests {
     @Suppress("unused")
     @MockBean
     lateinit var eventService: EventService
+
+    @Suppress("unused")
+    @MockBean
+    lateinit var messagingService: MessagingService
 
     @Test
     fun contextLoads() {

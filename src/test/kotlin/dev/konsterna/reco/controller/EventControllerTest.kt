@@ -2,6 +2,7 @@ package dev.konsterna.reco.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import dev.konsterna.reco.rest.AttendeesRequest
+import dev.konsterna.reco.rest.SendMessageRequest
 import dev.konsterna.reco.service.EventService
 import dev.konsterna.reco.service.MessagingService
 import org.junit.jupiter.api.Test
@@ -50,8 +51,15 @@ internal class EventControllerTest {
 
     @Test
     fun sendMessages() {
+        val requestBody = SendMessageRequest("http://localhost/%hash%")
+        val requestJson = ObjectMapper().writeValueAsString(requestBody)
         mockMvc
-            .perform(MockMvcRequestBuilders.post("/events/20210806/messages"))
+            .perform(
+                MockMvcRequestBuilders
+                    .post("/events/20210806/messages")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(requestJson)
+            )
             .andExpect(status().isOk)
     }
 }

@@ -2,6 +2,7 @@ package dev.konsterna.reco.controller
 
 import dev.konsterna.reco.rest.AttendeesRequest
 import dev.konsterna.reco.rest.AttendeesResponse
+import dev.konsterna.reco.rest.SendMessageRequest
 import dev.konsterna.reco.rest.SendMessagesResultResponse
 import dev.konsterna.reco.service.EventService
 import dev.konsterna.reco.service.MessagingService
@@ -29,8 +30,8 @@ class EventController {
     }
 
     @PostMapping("/events/{eventId}/messages")
-    fun sendMessages(@PathVariable eventId: String): SendMessagesResultResponse {
-        val result = messagingService.sendMessages(eventId)
+    fun sendMessages(@PathVariable eventId: String, @RequestBody body: SendMessageRequest): SendMessagesResultResponse {
+        val result = messagingService.sendMessages(eventId, body.template)
         return SendMessagesResultResponse(result)
     }
 

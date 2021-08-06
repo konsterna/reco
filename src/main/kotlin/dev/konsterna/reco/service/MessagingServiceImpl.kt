@@ -1,5 +1,6 @@
 package dev.konsterna.reco.service
 
+import dev.konsterna.reco.component.MessageBuilder
 import dev.konsterna.reco.component.MessagingGateway
 import dev.konsterna.reco.model.SendMessageResult
 import dev.konsterna.reco.repository.AttendeeRepository
@@ -13,11 +14,15 @@ class MessagingServiceImpl : MessagingService {
     lateinit var attendeeRepository: AttendeeRepository
 
     @Autowired
+    lateinit var messageBuilder: MessageBuilder
+
+    @Autowired
     lateinit var messagingGateway: MessagingGateway
 
-    override fun sendMessages(eventId: String): List<SendMessageResult> {
-        return attendeeRepository.getAllContacts(eventId).map {
-            val isSuccess = messagingGateway.send(it.destination, "Test")
+    override fun sendMessages(eventId: String, template: String): List<SendMessageResult> {
+        return attendeeRepository.getAttendees(eventId).map {
+            val message = messageBuilder.build(template, eventId, it.answerCode)
+            val isSuccess = messagingGateway.send(it.destination, message)
             return@map SendMessageResult(it.id, isSuccess)
         }
     }

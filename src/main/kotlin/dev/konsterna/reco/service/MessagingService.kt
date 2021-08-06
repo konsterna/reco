@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface MessagingService {
-    fun sendMessages(eventId: String): List<SendMessageResult>
+    fun sendMessages(eventId: String, template: String): List<SendMessageResult>
 }

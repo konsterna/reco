@@ -12,11 +12,12 @@ class EventServiceImpl : EventService {
     lateinit var attendeeRepository: AttendeeRepository
 
     override fun getAttendees(eventId: String): List<Attendee> {
-        return attendeeRepository.getAllAttendees(eventId)
+        return attendeeRepository.getAttendees(eventId)
     }
 
-    override fun updateAttendees(eventId: String, attendees: List<Attendee>) {
-        return attendeeRepository.setAllAttendees(eventId, attendees)
+    override fun updateAttendees(eventId: String, attendees: List<Attendee>): List<Attendee> {
+        attendeeRepository.setAttendees(eventId, attendees)
+        return attendeeRepository.getAttendees(eventId)
     }
 
 }

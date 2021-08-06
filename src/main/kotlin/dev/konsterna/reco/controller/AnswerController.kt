@@ -12,9 +12,9 @@ class AnswerController {
     @Autowired
     lateinit var answerService: AnswerService
 
-    @PutMapping("/answers/{answerCode}")
-    fun answer(@PathVariable answerCode: String) {
-        answerService.answer(answerCode)
+    @PutMapping("/answers/{hash}")
+    fun answer(@PathVariable hash: String) {
+        answerService.answer(hash)
     }
 
 }

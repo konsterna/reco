@@ -4,5 +4,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface AnswerService {
-    fun answer(answerCode: String)
+    fun answer(hash: String)
 }

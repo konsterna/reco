@@ -12,12 +12,17 @@ class EventServiceImpl : EventService {
     lateinit var attendeeRepository: AttendeeRepository
 
     override fun getAttendees(eventId: String): List<Attendee> {
-        return attendeeRepository.getAttendees(eventId)
+        return attendeeRepository.findAttendees(eventId)
     }
 
     override fun updateAttendees(eventId: String, attendees: List<Attendee>): List<Attendee> {
-        attendeeRepository.setAttendees(eventId, attendees)
-        return attendeeRepository.getAttendees(eventId)
+        val currentAttendees = getAttendees(eventId)
+        val removedAttendees = currentAttendees.minus(attendees)
+        attendeeRepository.performTransaction {
+            it.deleteAll(removedAttendees)
+            it.saveAll(attendees)
+        }
+        return getAttendees(eventId)
     }
 
 }

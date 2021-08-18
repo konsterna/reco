@@ -2,6 +2,7 @@ package dev.konsterna.reco
 
 import dev.konsterna.reco.controller.AnswerController
 import dev.konsterna.reco.controller.EventController
+import dev.konsterna.reco.repository.AttendeeRepository
 import dev.konsterna.reco.service.AnswerService
 import dev.konsterna.reco.service.EventService
 import dev.konsterna.reco.service.MessagingService
@@ -32,6 +33,10 @@ class RecoApplicationTests {
     @Suppress("unused")
     @MockBean
     lateinit var messagingService: MessagingService
+
+    @Suppress("unused")
+    @MockBean
+    lateinit var attendeeRepository: AttendeeRepository
 
     @Test
     fun contextLoads() {

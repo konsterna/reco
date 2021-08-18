@@ -1,6 +1,6 @@
 package dev.konsterna.reco.model
 
 data class SendMessageResult(
-    val userId: Int,
+    val userId: Long,
     val isSuccess: Boolean,
 )

@@ -49,10 +49,10 @@ internal class MessagingServiceImplTest {
 
     @Test
     fun sendMessages() {
-        whenever(attendeeRepository.getAttendees(anyString())).doReturn(listOf(
-            Attendee(0, "A", "000-000-000A", "a"),
-            Attendee(1, "B", "000-000-000B", "b"),
-            Attendee(2, "C", "000-000-000C", "c"),
+        whenever(attendeeRepository.findByEventId(anyString())).doReturn(listOf(
+            Attendee(0, "A", "000-000-000A", "a", "abcdefg0"),
+            Attendee(1, "B", "000-000-000B", "b", "abcdefg1"),
+            Attendee(2, "C", "000-000-000C", "c", "abcdefg2"),
         ))
         whenever(gateway.send(anyString(), anyString())).doReturn(true)
         whenever(builder.build(anyString(), anyString(), anyString())).doReturn("")

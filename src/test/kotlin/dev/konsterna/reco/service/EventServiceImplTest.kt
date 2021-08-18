@@ -35,13 +35,13 @@ internal class EventServiceImplTest {
 
     @Test
     fun getAttendees() {
-        whenever(attendeeRepository.findAttendees(anyString())).doReturn(emptyList())
+        whenever(attendeeRepository.findByEventId(anyString())).doReturn(emptyList())
         assertTrue(service.getAttendees("20210820").isEmpty())
     }
 
     @Test
     fun updateAttendees() {
-        whenever(attendeeRepository.findAttendees(anyString())).doReturn(emptyList())
+        whenever(attendeeRepository.findByEventId(anyString())).doReturn(emptyList())
         assertTrue(service.updateAttendees("20200820", emptyList()).isEmpty())
     }
 }

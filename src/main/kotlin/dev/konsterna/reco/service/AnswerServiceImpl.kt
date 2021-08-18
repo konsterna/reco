@@ -17,7 +17,7 @@ class AnswerServiceImpl : AnswerService {
 
     override fun answer(hash: String) {
         val (eventId, answerCode) = answerCodeConverter.decode(hash) ?: throw IllegalArgumentException()
-        val attendee = attendeeRepository.findAttendeesByEventIdAndAnswerCode(eventId, answerCode).firstOrNull()
+        val attendee = attendeeRepository.findByEventIdAndAnswerCode(eventId, answerCode).firstOrNull()
             ?: throw IllegalStateException()
         attendee.answerDate = Date()
 

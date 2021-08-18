@@ -49,7 +49,7 @@ internal class MessagingServiceImplTest {
 
     @Test
     fun sendMessages() {
-        whenever(attendeeRepository.findAttendees(anyString())).doReturn(listOf(
+        whenever(attendeeRepository.findByEventId(anyString())).doReturn(listOf(
             Attendee(0, "A", "000-000-000A", "a", "abcdefg0"),
             Attendee(1, "B", "000-000-000B", "b", "abcdefg1"),
             Attendee(2, "C", "000-000-000C", "c", "abcdefg2"),

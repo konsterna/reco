@@ -20,7 +20,7 @@ class MessagingServiceImpl : MessagingService {
     lateinit var messagingGateway: MessagingGateway
 
     override fun sendMessages(eventId: String, template: String): List<SendMessageResult> {
-        return attendeeRepository.findAttendees(eventId).map {
+        return attendeeRepository.findByEventId(eventId).map {
             val message = messageBuilder.build(template, eventId, it.answerCode)
             val isSuccess = messagingGateway.send(it.destination, message)
             return@map SendMessageResult(it.id, isSuccess)

@@ -12,7 +12,7 @@ class EventServiceImpl : EventService {
     lateinit var attendeeRepository: AttendeeRepository
 
     override fun getAttendees(eventId: String): List<Attendee> {
-        return attendeeRepository.findAttendees(eventId)
+        return attendeeRepository.findByEventId(eventId)
     }
 
     override fun updateAttendees(eventId: String, attendees: List<Attendee>): List<Attendee> {
